@@ -135,6 +135,7 @@ export function createGame() {
     })
     .catch((e) => console.error(e));
 }
-export async function updateTile(id, tileIndex, newValue) {
+export function updateTile(tileIndex, newValue) {
+  firebase.ref.update({ lastUpdated: firebase.serverTime });
   return firebase.ref.child('board').child(tileIndex).update(newValue);
 }

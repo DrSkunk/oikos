@@ -27,11 +27,11 @@ export default class Game extends Component {
         } else if (state.selectedTile === null) {
           return { selectedTile: index };
         } else {
-          parseAction(this.props.gameId, state, index, this.props.game, tile);
+          parseAction(state, index, this.props.game, tile);
           return { selectedTile: null };
         }
       } else {
-        parseAction(this.props.gameId, state, index, this.props.game, tile);
+        parseAction(state, index, this.props.game, tile);
       }
     });
   };
