@@ -1,19 +1,27 @@
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_ENDPOINT;
+const gamesEndpoint = baseUrl + '/games/';
+
 export function createGame(id) {
-  return axios.post('http://localhost:8080/games', {
+  return axios.post(gamesEndpoint, {
     data: {
       type: 'game',
-      id
-    }
+      id,
+    },
   });
 }
 
 export function updateTile(id, tileIndex, newValue) {
-  return axios.patch('http://localhost:8080/games/' + id, {
+  return axios.patch(gamesEndpoint + id, {
     data: {
       type: 'game',
-      id
-    }
+      id,
+      attributes: {
+        board: {
+          [tileIndex]: newValue,
+        },
+      },
+    },
   });
 }

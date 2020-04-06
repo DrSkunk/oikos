@@ -4,16 +4,11 @@ import { parseAction } from '../util/gameLogic';
 import modes from '../util/modes';
 import Tile from '../atoms/Tile';
 
-const Wrapper = styled.div`
-  width: 500px;
-  margin: 0 auto;
-`;
-
 const Board = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 500px;
+  height: 540px;
 `;
 
 export default class Game extends Component {
@@ -26,23 +21,26 @@ export default class Game extends Component {
   onTileClick = (index, tile) => {
     console.log('Click', index, tile);
 
+    // parseAction(this.props.gameId, state, index, this.props.tiles, tile);
+
     // Toggle selected tile
-    this.setState(state => {
+    this.setState((state) => {
       if (state.mode === modes.moveWorker) {
         if (state.selectedTile === index) {
           return { selectedTile: null };
+        } else if (state.selectedTile === null) {
+          return { selectedTile: index };
+        } else {
+          parseAction(this.props.gameId, state, index, this.props.game, tile);
+          return { selectedTile: null };
         }
-        return { selectedTile: index };
+      } else {
+        parseAction(this.props.gameId, state, index, this.props.game, tile);
       }
-    });
-
-    this.setState(state => {
-      const newState = parseAction(state, index, tile);
-      return newState;
     });
   };
 
-  setMode = newMode => {
+  setMode = (newMode) => {
     console.log('newMode', newMode);
     if (newMode !== modes.moveWorker) {
       this.setState({ mode: newMode, selectedTile: null });
@@ -51,7 +49,7 @@ export default class Game extends Component {
     }
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const team = parseInt(event.target.value);
     this.setState({ team });
   };
@@ -72,14 +70,14 @@ export default class Game extends Component {
       />
     ));
     return (
-      <Wrapper>
+      <div>
         <label>
           Team
           <select value={team} onChange={this.handleChange}>
-            <option value="0">Red</option>
-            <option value="1">Green</option>
-            <option value="2">Blue</option>
-            <option value="3">Purple</option>
+            <option value="1">Red</option>
+            <option value="2">Green</option>
+            <option value="3">Blue</option>
+            <option value="4">Purple</option>
           </select>
         </label>
 
@@ -126,7 +124,7 @@ export default class Game extends Component {
           Remove roof
         </button>
         <Board>{tiles}</Board>
-      </Wrapper>
+      </div>
     );
   }
 }

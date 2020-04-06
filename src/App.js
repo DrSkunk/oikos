@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import shortId from 'shortid';
+import styled from 'styled-components';
 import firebase from './util/firebase';
 import Game from './components/Game';
 import { createGame } from './util/api';
 
+const Wrapper = styled.div`
+  width: 540px;
+  margin: 0 auto;
+`;
+
+function startNewGame(refresh = false, gameId = null) {
+  if (!gameId) {
+    gameId = shortId();
+  }
+  const newUrl =
+    window.location.origin + window.location.pathname + '?gameId=' + gameId;
+  if (refresh) {
+    window.history.pushState(null, null, newUrl);
+  } else {
+    window.history.replaceState(null, null, newUrl);
+  }
+}
 export default class App extends Component {
   constructor(props) {
     super(props);
     let gameId = new URL(window.location).searchParams.get('gameId');
     if (gameId === null) {
-      console.log(gameId);
       gameId = shortId();
-      const newUrl = window.location.origin + '?gameId=' + gameId;
-      window.history.replaceState(null, null, newUrl);
+      startNewGame(false, gameId);
+    }
+    const safeGameId = gameId.replace(/[^\w\s]/gi, '');
+    if (gameId !== safeGameId) {
+      startNewGame(false, safeGameId);
     }
 
     this.ref = firebase.db.ref('games').child(gameId);
@@ -21,18 +41,18 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.updateListener = this.ref.on('value', data => {
+    this.updateListener = this.ref.on('value', (data) => {
       const game = data.val();
       console.log('game', game);
 
       if (game === null) {
-        createGame(this.state.gameId).catch(error => {
+        createGame(this.state.gameId).catch((error) => {
           this.setState({ error: true });
         });
       } else {
         this.setState({
           game,
-          loading: false
+          loading: false,
         });
       }
     });
@@ -46,7 +66,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { loading, error, game } = this.state;
+    const { loading, error, game, gameId } = this.state;
     if (error) {
       return (
         <div>
@@ -59,10 +79,16 @@ export default class App extends Component {
       return <div>Loading....</div>;
     }
     return (
-      <div>
-        <Game game={game} />
-        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-      </div>
+      <Wrapper>
+        <Game game={game} gameId={gameId} />
+        <button
+          onClick={() => {
+            startNewGame(true);
+          }}
+        >
+          Start nieuw spel
+        </button>
+      </Wrapper>
     );
   }
 }
