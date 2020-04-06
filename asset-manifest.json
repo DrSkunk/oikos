@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/oikos/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/oikos/static/js/main.19374908.chunk.js",
-    "main.js.map": "/oikos/static/js/main.19374908.chunk.js.map",
+    "main.js": "/oikos/static/js/main.441136f2.chunk.js",
+    "main.js.map": "/oikos/static/js/main.441136f2.chunk.js.map",
     "runtime-main.js": "/oikos/static/js/runtime-main.4c755ecb.js",
     "runtime-main.js.map": "/oikos/static/js/runtime-main.4c755ecb.js.map",
-    "static/js/2.6169cb9e.chunk.js": "/oikos/static/js/2.6169cb9e.chunk.js",
-    "static/js/2.6169cb9e.chunk.js.map": "/oikos/static/js/2.6169cb9e.chunk.js.map",
+    "static/js/2.ac4c83df.chunk.js": "/oikos/static/js/2.ac4c83df.chunk.js",
+    "static/js/2.ac4c83df.chunk.js.map": "/oikos/static/js/2.ac4c83df.chunk.js.map",
     "index.html": "/oikos/index.html",
-    "precache-manifest.e65e384e7a7ec8f93565c313f6b31685.js": "/oikos/precache-manifest.e65e384e7a7ec8f93565c313f6b31685.js",
+    "precache-manifest.04679642cee6b9dde9b51cebcc0f0f63.js": "/oikos/precache-manifest.04679642cee6b9dde9b51cebcc0f0f63.js",
     "service-worker.js": "/oikos/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/oikos/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.6169cb9e.chunk.js.LICENSE.txt": "/oikos/static/js/2.6169cb9e.chunk.js.LICENSE.txt"
+    "static/js/2.ac4c83df.chunk.js.LICENSE.txt": "/oikos/static/js/2.ac4c83df.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4c755ecb.js",
-    "static/js/2.6169cb9e.chunk.js",
+    "static/js/2.ac4c83df.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.19374908.chunk.js"
+    "static/js/main.441136f2.chunk.js"
   ]
 }
