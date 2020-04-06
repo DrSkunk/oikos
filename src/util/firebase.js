@@ -12,11 +12,15 @@ const config = {
   messagingSenderId: '996454215912'
 };
 class Firebase {
-  constructor() {
+  constructor(gameId) {
     app.initializeApp(config);
 
     this.auth = app.auth();
     this.db = app.database();
+  }
+
+  set gameId(gameId){
+    this.ref = this.db.ref('games').child(gameId);
   }
 }
 export default new Firebase();

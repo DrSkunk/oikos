@@ -1,27 +1,140 @@
-import axios from 'axios';
+import firebase from './firebase';
 
-const baseUrl = process.env.REACT_APP_ENDPOINT;
-const gamesEndpoint = baseUrl + '/games/';
-
-export function createGame(id) {
-  return axios.post(gamesEndpoint, {
-    data: {
-      type: 'game',
-      id,
+export function createGame() {
+  const board = [
+    {
+      level: 0,
+      roof: false,
+      player: 0,
     },
-  });
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+    {
+      level: 0,
+      roof: false,
+      player: 0,
+    },
+  ];
+
+  firebase.ref
+    .set({
+      board,
+    })
+    .catch((e) => console.error(e));
 }
-
-export function updateTile(id, tileIndex, newValue) {
-  return axios.patch(gamesEndpoint + id, {
-    data: {
-      type: 'game',
-      id,
-      attributes: {
-        board: {
-          [tileIndex]: newValue,
-        },
-      },
-    },
-  });
+export async function updateTile(id, tileIndex, newValue) {
+  return firebase.ref.child('board').child(tileIndex).update(newValue);
 }

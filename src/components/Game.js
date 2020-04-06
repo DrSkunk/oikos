@@ -15,7 +15,7 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
     console.log('Game');
-    this.state = { mode: modes.moveWorker, selectedTile: null };
+    this.state = { mode: modes.moveWorker, selectedTile: null, team: 1 };
   }
 
   onTileClick = (index, tile) => {
