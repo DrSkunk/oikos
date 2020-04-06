@@ -9,20 +9,16 @@ const Board = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   height: 540px;
+  margin-top: 10px;
 `;
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
-    console.log('Game');
     this.state = { mode: modes.moveWorker, selectedTile: null, team: 1 };
   }
 
   onTileClick = (index, tile) => {
-    console.log('Click', index, tile);
-
-    // parseAction(this.props.gameId, state, index, this.props.tiles, tile);
-
     // Toggle selected tile
     this.setState((state) => {
       if (state.mode === modes.moveWorker) {
@@ -41,7 +37,6 @@ export default class Game extends Component {
   };
 
   setMode = (newMode) => {
-    console.log('newMode', newMode);
     if (newMode !== modes.moveWorker) {
       this.setState({ mode: newMode, selectedTile: null });
     } else {

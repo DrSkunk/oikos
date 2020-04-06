@@ -11,19 +11,21 @@ const Wrapper = styled.div`
 `;
 
 function startNewGame(refresh = false, gameId = null) {
+  console.log('startnewgame', refresh, gameId);
   if (!gameId) {
     gameId = shortId();
   }
   const newUrl =
     window.location.origin + window.location.pathname + '?gameId=' + gameId;
   if (refresh) {
-    window.history.pushState(null, null, newUrl);
+    window.location.href = newUrl;
   } else {
     window.history.replaceState(null, null, newUrl);
   }
 }
 export default class App extends Component {
   constructor(props) {
+    console.log('constructor');
     super(props);
     let gameId = new URL(window.location).searchParams.get('gameId');
     if (gameId === null) {
@@ -36,6 +38,8 @@ export default class App extends Component {
     }
     firebase.gameId = gameId;
 
+    console.log(firebase, gameId);
+
     this.state = { loading: true, gameId };
   }
 
@@ -43,9 +47,11 @@ export default class App extends Component {
     this.updateListener = firebase.ref.on('value', (data) => {
       const game = data.val();
       if (game === null) {
-        createGame(this.state.gameId).catch((error) => {
+        try {
+          createGame(this.state.gameId);
+        } catch (error) {
           this.setState({ error: true });
-        });
+        }
       } else {
         this.setState({
           game,

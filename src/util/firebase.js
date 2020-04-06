@@ -9,7 +9,7 @@ const config = {
   databaseURL: 'https://oikos-game.firebaseio.com',
   projectId: 'oikos-game',
   storageBucket: 'oikos-game.appspot.com',
-  messagingSenderId: '996454215912'
+  messagingSenderId: '996454215912',
 };
 class Firebase {
   constructor(gameId) {
@@ -19,7 +19,7 @@ class Firebase {
     this.db = app.database();
   }
 
-  set gameId(gameId){
+  set gameId(gameId) {
     this.ref = this.db.ref('games').child(gameId);
   }
 }
