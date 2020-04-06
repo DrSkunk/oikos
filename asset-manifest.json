@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/oikos/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/oikos/static/js/main.4532a462.chunk.js",
+    "main.js.map": "/oikos/static/js/main.4532a462.chunk.js.map",
+    "runtime-main.js": "/oikos/static/js/runtime-main.4c755ecb.js",
+    "runtime-main.js.map": "/oikos/static/js/runtime-main.4c755ecb.js.map",
+    "static/js/2.6169cb9e.chunk.js": "/oikos/static/js/2.6169cb9e.chunk.js",
+    "static/js/2.6169cb9e.chunk.js.map": "/oikos/static/js/2.6169cb9e.chunk.js.map",
+    "index.html": "/oikos/index.html",
+    "precache-manifest.1f8e97692ef7c82a1f05385a7888dafb.js": "/oikos/precache-manifest.1f8e97692ef7c82a1f05385a7888dafb.js",
+    "service-worker.js": "/oikos/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/oikos/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.6169cb9e.chunk.js.LICENSE.txt": "/oikos/static/js/2.6169cb9e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4c755ecb.js",
+    "static/js/2.6169cb9e.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.4532a462.chunk.js"
+  ]
+}
