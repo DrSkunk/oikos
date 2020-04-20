@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import { resetBoard } from '../util/api';
 import { parseAction } from '../util/gameLogic';
 import modes from '../util/modes';
 import Tile from '../atoms/Tile';
@@ -76,49 +78,59 @@ export default class Game extends Component {
           </select>
         </label>
 
-        <button
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.moveWorker)}
           disabled={mode === modes.moveWorker}
         >
           Move worker
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.addLevel)}
           disabled={mode === modes.addLevel}
         >
           Add level
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.removeLevel)}
           disabled={mode === modes.removeLevel}
         >
           remove level
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.addWorker)}
           disabled={mode === modes.addWorker}
         >
           Add Worker
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.removeWorker)}
           disabled={mode === modes.removeWorker}
         >
           Remove worker
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.addRoof)}
           disabled={mode === modes.addRoof}
         >
           Add roof
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           onClick={() => this.setMode(modes.removeRoof)}
           disabled={mode === modes.removeRoof}
         >
           Remove roof
-        </button>
+        </Button>
         <Board>{tiles}</Board>
+        <Button variant="secondary" onClick={resetBoard}>
+          Reset board
+        </Button>
       </div>
     );
   }

@@ -1,90 +1,79 @@
 import React, { Component } from 'react';
-import shortId from 'shortid';
-import styled from 'styled-components';
-import firebase from './util/firebase';
-import Game from './components/Game';
-import { createGame } from './util/api';
+import randomWords from 'random-words';
 
-const Wrapper = styled.div`
-  width: 540px;
-  margin: 0 auto;
-`;
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
-function startNewGame(refresh = false, gameId = null) {
-  console.log('startnewgame', refresh, gameId);
-  if (!gameId) {
-    gameId = shortId();
-  }
-  const newUrl =
-    window.location.origin + window.location.pathname + '?gameId=' + gameId;
-  if (refresh) {
-    window.location.href = newUrl;
-  } else {
-    window.history.replaceState(null, null, newUrl);
-  }
-}
+import Room from './Room';
+
 export default class App extends Component {
+  state = {};
+
   constructor(props) {
-    console.log('constructor');
     super(props);
-    let gameId = new URL(window.location).searchParams.get('gameId');
-    if (gameId === null) {
-      gameId = shortId();
-      startNewGame(false, gameId);
+    let room = new URL(window.location).searchParams.get('room');
+    if (!room) {
+      room = randomWords(3).join('-');
+      this.state.lobby = true;
+    } else {
+      room = room.replace(/[^\w\s]/gi, '');
+      this.state.lobby = false;
     }
-    const safeGameId = gameId.replace(/[^\w\s]/gi, '');
-    if (gameId !== safeGameId) {
-      startNewGame(false, safeGameId);
-    }
-    firebase.gameId = gameId;
 
-    console.log(firebase, gameId);
-
-    this.state = { loading: true, gameId };
+    this.state.room = room;
   }
 
-  componentDidMount() {
-    this.updateListener = firebase.ref.on('value', (data) => {
-      const game = data.val();
-      if (game === null) {
-        try {
-          createGame(this.state.gameId);
-        } catch (error) {
-          this.setState({ error: true });
-        }
-      } else {
-        this.setState({
-          game,
-          loading: false,
-        });
-      }
-    });
-  }
+  onRoomChange = (e) => {
+    console.log(e.target.value);
+    this.setState({ room: e.target.value });
+  };
+
+  startNewGame = () => {
+    const newUrl =
+      window.location.origin +
+      window.location.pathname +
+      '?room=' +
+      this.state.room;
+
+    window.history.replaceState(null, null, newUrl);
+    this.setState({ lobby: false });
+  };
 
   render() {
-    const { loading, error, game, gameId } = this.state;
-    if (error) {
+    const { room, lobby } = this.state;
+
+    if (lobby) {
       return (
-        <div>
-          An error occured, please refresh page to try again. If this persists,
-          contact <a href="https://sebastiaanjansen.be/contact">Sebastiaan</a>.
-        </div>
+        <Container>
+          <Row>
+            <Col className="col-lg-4 offset-lg-3">
+              <h1 className="header">Oikos</h1>
+              <InputGroup>
+                <FormControl
+                  placeholder="room code"
+                  aria-label="room code"
+                  value={room}
+                  onChange={this.onRoomChange}
+                />
+                <InputGroup.Append>
+                  <Button
+                    variant="outline-secondary"
+                    onClick={this.startNewGame}
+                  >
+                    Go
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </Col>
+          </Row>
+        </Container>
       );
     }
-    if (loading) {
-      return <div>Loading....</div>;
-    }
-    return (
-      <Wrapper>
-        <Game game={game} gameId={gameId} />
-        <button
-          onClick={() => {
-            startNewGame(true);
-          }}
-        >
-          Start nieuw spel
-        </button>
-      </Wrapper>
-    );
+
+    return <Room room={room}></Room>;
   }
 }
