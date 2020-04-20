@@ -107,6 +107,15 @@ export default class Tile extends Component {
             alt="roof"
           />
         ) : null}
+        {player ? (
+          <svg
+            width="100"
+            height="100"
+            style={{ position: 'relative', zIndex: 5 }}
+          >
+            <Player cx="50" cy="50" r="20" player={player} />
+          </svg>
+        ) : null}
       </Base>
     );
   }
