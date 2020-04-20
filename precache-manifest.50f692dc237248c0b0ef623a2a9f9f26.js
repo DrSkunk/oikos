@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11b55da76fc0987890f69aab18dac661",
+    "revision": "e7e4d106dd287b87ca38185816c4279d",
     "url": "/oikos/index.html"
   },
   {
-    "revision": "16b802c219a58dfdf81d",
+    "revision": "a5e5995384eb24773fb5",
     "url": "/oikos/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/oikos/static/js/2.82c2c77c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "16b802c219a58dfdf81d",
-    "url": "/oikos/static/js/main.e60758c7.chunk.js"
+    "revision": "a5e5995384eb24773fb5",
+    "url": "/oikos/static/js/main.9d265ca9.chunk.js"
   },
   {
     "revision": "fca9d064411392530437",

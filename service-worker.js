@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/oikos/precache-manifest.0d195b2441ea80d5df62922d0276b122.js"
+  "/oikos/precache-manifest.50f692dc237248c0b0ef623a2a9f9f26.js"
 );
 
 self.addEventListener('message', (event) => {
